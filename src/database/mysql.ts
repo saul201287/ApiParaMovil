@@ -12,11 +12,14 @@ const AppDataSource = new DataSource({
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-  synchronize: true, 
-  logging: false, 
-  entities: ["src/database/entities/**/*.ts"], 
-  migrations: ["src/migrations/**/*.ts"], 
-  subscribers: ["src/subscribers/**/*.ts"],
+  synchronize: true,
+  logging: false,
+  entities:
+    process.env.NODE_ENV === "production"
+      ? ["build/database/entities/**/*.js"]
+      : ["src/database/entities/**/*.ts"],
+  //migrations: ["src/migrations/**/*.ts"],
+  //subscribers: ["src/subscribers/**/*.ts"],
 });
 
 class Database {
