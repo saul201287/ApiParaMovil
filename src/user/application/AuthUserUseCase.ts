@@ -18,6 +18,8 @@ export class AuthUserUseCase {
            userN.password
          );
           if (!isPasswordCorrect) {
+            console.log("error");
+            
             return null;
           }
         return "Credenciales validas";

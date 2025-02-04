@@ -6,9 +6,12 @@ export class AuthUserControll {
 
   async run(req: Request, res: Response, next: NextFunction) {
     const data = req.body;
+    console.log(data.username);
+    
     try {
-      const userN = await this.getUserUseCase.run(data.user, data.password);
-
+      const userN = await this.getUserUseCase.run(data.username, data.password);
+      console.log(userN);
+      
       if (userN != null) {
         res.locals.user = userN;
         //next();

@@ -45,7 +45,11 @@ export class MysqlUserRepository implements userRepository {
   }
   async auth(username: string, password: string): Promise<User | null> {
     const userRepository = this.dataSource.getRepository(UserE);
+    console.log(username);
+    
     const savedUser = await userRepository.findOneBy({ username: username });
+    console.log(savedUser);
+    
     if (savedUser == null) return null;
     const user = new User(
       savedUser.id!,
