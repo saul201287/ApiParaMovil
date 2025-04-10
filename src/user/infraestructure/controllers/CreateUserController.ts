@@ -22,7 +22,7 @@ export class CreateUserController {
           user: user?.username,
         };
         return res.status(201).send({
-          status: "recurso creado",
+          messages: "recurso creado",
           data: responseData,
         });
         //res.locals.user = responseData;

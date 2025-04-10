@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.authUserController = exports.createUserController = void 0;
+const CreateUserUseCase_1 = require("../application/CreateUserUseCase");
+const AuthUserUseCase_1 = require("../application/AuthUserUseCase");
+const CreateUserController_1 = require("./controllers/CreateUserController");
+const AuthUserController_1 = require("./controllers/AuthUserController");
+const mysqlUserRepository_1 = require("./mysqlUserRepository");
+const servicesEncrypt_1 = require("./servicesEncrypt");
+const mysqlUserRepository = new mysqlUserRepository_1.MysqlUserRepository();
+const encryptServices = new servicesEncrypt_1.EncryptServices();
+const createUserUseCase = new CreateUserUseCase_1.CreateUserUseCase(mysqlUserRepository, encryptServices);
+const authUserUseCase = new AuthUserUseCase_1.AuthUserUseCase(mysqlUserRepository, encryptServices);
+exports.createUserController = new CreateUserController_1.CreateUserController(createUserUseCase);
+exports.authUserController = new AuthUserController_1.AuthUserControll(authUserUseCase);
